@@ -49,6 +49,26 @@ async function imagePdfInput() {
   console.log(response.text);
 }
 
+async function audioInput() {
+  // Upload MP3 file
+  const audio = await ai.files.upload({
+    file: path.resolve("./content/audio.mp3"),
+  });
+
+  // Generate content based on the audio input
+  const response = await ai.models.generateContent({
+    model: "gemini-2.0-flash",
+    contents: [
+      createUserContent([
+        "This is a chinese song , write out the chinese lyrics. Translate it into english in the second paragraph",
+        createPartFromUri(audio.uri, "audio/mpeg"),
+      ]),
+    ],
+  });
+
+  console.log(response.text);
+}
+
 async function streaming() {
   const response = await ai.models.generateContentStream({
     model: "gemini-2.0-flash",
@@ -65,3 +85,5 @@ async function streaming() {
 //await imagePdfInput();
 
 //await streaming();
+
+//await audioInput();
