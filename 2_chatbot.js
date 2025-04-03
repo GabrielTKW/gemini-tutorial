@@ -11,6 +11,10 @@ async function main() {
     model: "gemini-2.0-flash",
     history: [
       {
+        role: "user",
+        parts: [{ text: "Hello , I have 3 dogs a home" }],
+      },
+      {
         role: "model",
         parts: [
           { text: "Hello! I'm your AI assistant. How can I help you today?" },
@@ -18,7 +22,13 @@ async function main() {
       },
       {
         role: "user",
-        parts: [{ text: "I have 3 dogs at home." }],
+        parts: [{ text: "I have 2 girlfriends" }],
+      },
+      {
+        role: "model",
+        parts: [
+          { text: "Ohh I thought u dont have one " },
+        ],
       },
     ],
   });
